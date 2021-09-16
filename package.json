@@ -1,0 +1,20 @@
+{
+  "name": "user-management",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/levantai1010/user-management.git",
+  "author": "levantai1010 <levantai101001@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "mysql2": "^2.3.0",
+    "nodemon": "^2.0.12",
+    "sequelize": "^6.6.5",
+    "sequelize-cli": "^6.2.0"
+  }
+}
