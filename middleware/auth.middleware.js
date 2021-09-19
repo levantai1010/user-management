@@ -4,7 +4,6 @@ const authenticate = (req, res, next) => {
   try {
     const secrectKey = "secrect";
     const decode = jwt.verify(token, secrectKey);
-    console.log("Decode: ", decode);
     if (decode) {
       req.user = decode;
       next();

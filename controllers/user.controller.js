@@ -11,7 +11,7 @@ const getUserList = async (req, res) => {
 };
 const createUser = async (req, res) => {
   try {
-    const { name, email, password, phone, role } = req.body;
+    const { name, email, password, phone, role, avatar } = req.body;
     const salt = bcrypt.genSaltSync(10);
     const passwordHash = bcrypt.hashSync(password, salt);
     const newUser = await User.create({
@@ -20,6 +20,7 @@ const createUser = async (req, res) => {
       password: passwordHash,
       phone,
       role,
+      avatar,
     });
     res.status(201).send(newUser);
   } catch (error) {
@@ -47,16 +48,6 @@ const updateUser = async (req, res) => {
     let userUpdate = await User.findOne({
       where: { id },
     });
-    // if (userUpdate) {
-    //   userUpdate.name = name;
-    //   userUpdate.email = email;
-    //   userUpdate.phone = phone;
-    //   userUpdate.role = role;
-    //   await userUpdate.save();
-    //   res.status(201).send(userUpdate);
-    // } else {
-    //   res.status(404).send(`Not found`);
-    // }
     userUpdate.name = name;
     userUpdate.email = email;
     userUpdate.phone = phone;
@@ -67,9 +58,25 @@ const updateUser = async (req, res) => {
     res.status(500).send(error);
   }
 };
+const uploadAvatar = async (req, res) => {
+  const { file, user } = req;
+
+  const urlImage = "http://localhost:3000/" + file.path;
+  res.send(user);
+  // lưu link hình xuống database
+  try {
+    const userDetail = await User.findByPk(user.id);
+    userDetail.avatar = urlImage;
+    await userDetail.save();
+    res.send(userDetail);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 module.exports = {
   getUserList,
   createUser,
   removeUser,
   updateUser,
+  uploadAvatar,
 };
