@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 const authenticate = (req, res, next) => {
-  //   const token = req.header("token");
   const token = req.header("token");
   try {
     const secrectKey = "secrect";
@@ -8,7 +7,6 @@ const authenticate = (req, res, next) => {
     console.log("Decode: ", decode);
     if (decode) {
       req.user = decode;
-      // res.status(200).send(decode);
       next();
     } else {
       res.status(401).send("Login failed");
