@@ -45,15 +45,24 @@ const updateUser = async (req, res) => {
   const { name, email, phone, role } = req.body;
 
   try {
-    let userUpdate = await User.findOne({
-      where: { id },
-    });
-    userUpdate.name = name;
-    userUpdate.email = email;
-    userUpdate.phone = phone;
-    userUpdate.role = role;
-    await userUpdate.save();
-    res.status(201).send(userUpdate);
+    await User.update(
+      { name, email, phone, role },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+    // let userUpdate = await User.findOne({
+    //   where: { id },
+    // });
+    // userUpdate.name = name;
+    // userUpdate.email = email;
+    // userUpdate.phone = phone;
+    // userUpdate.role = role;
+    // await userUpdate.save();
+    // res.status(201).send(userUpdate);
+    res.status(201).send(`Update user id ${id} successfull !!`);
   } catch (error) {
     res.status(500).send(error);
   }
