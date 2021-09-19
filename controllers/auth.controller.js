@@ -31,7 +31,12 @@ const signIn = async (req, res) => {
       if (isAuth) {
         const secrectKey = "secrect";
         const token = jwt.sign(
-          { email: user.email, password: user.password, role: user.role },
+          {
+            id: user.id,
+            email: user.email,
+            password: user.password,
+            role: user.role,
+          },
           secrectKey
         );
         res.status(200).send({ token });
