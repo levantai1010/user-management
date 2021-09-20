@@ -69,15 +69,16 @@ const updateUser = async (req, res) => {
 };
 const uploadAvatar = async (req, res) => {
   const { file, user } = req;
+  //user được đính kèm trong lúc authenticate (decode)
 
-  const urlImage = "http://localhost:3000/" + file.path;
-  res.send(user);
+  const urlImage = "http://localhost:3500/" + file.path;
+
   // lưu link hình xuống database
   try {
     const userDetail = await User.findByPk(user.id);
     userDetail.avatar = urlImage;
     await userDetail.save();
-    res.send(userDetail);
+    res.send(urlImage);
   } catch (error) {
     res.status(500).send(error);
   }

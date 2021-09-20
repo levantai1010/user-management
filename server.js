@@ -2,7 +2,7 @@ const express = require("express");
 const { rootRouter } = require("./routers/root.router");
 const path = require("path");
 const app = express();
-const PORT = 3000;
+const PORT = 3500;
 // setup static file
 app.use("/public", express.static("public"));
 
