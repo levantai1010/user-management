@@ -11,30 +11,31 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    let arrBillFake = [];
+    let arrProductFake = [];
     for (let index = 0; index < 10; index++) {
       if (index % 2 == 0) {
-        arrBillFake.push({
+        arrProductFake.push({
           id: index + 1,
-          agent: "Linh",
-          purchaseDate: "2021-05-20",
-          userID: 1,
-          createdAt: "2021-05-20",
-          updatedAt: "2021-05-20",
+          name: "Hung",
+          amount: 7,
+          price: 150,
+          billID: 2,
+          createdAt: "2021-05-22",
+          updatedAt: "2021-05-22",
         });
       } else {
-        arrBillFake.push({
+        arrProductFake.push({
           id: index + 1,
-          agent: "Linh",
-          purchaseDate: "2021-05-20",
-          userID: 1,
-          createdAt: "2021-05-20",
-          updatedAt: "2021-05-20",
+          name: "Hoa",
+          amount: 7,
+          price: 150,
+          billID: 3,
+          createdAt: "2021-05-22",
+          updatedAt: "2021-05-22",
         });
       }
     }
-
-    await queryInterface.bulkInsert("Bills", arrBillFake, {});
+    await queryInterface.bulkInsert("Products", arrProductFake, {});
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -44,6 +45,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete("Bills", null, {});
+    await queryInterface.bulkDelete("Products", null, {});
   },
 };
